@@ -8,15 +8,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Mapping
 public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GetMapping
     private int id;
 
-    @GetMapping
     private String password;
 
     @Column(name="email")
