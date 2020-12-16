@@ -1,4 +1,4 @@
-package io.dsub.service.api.user;
+package io.dsub.blog.common.entity.user;
 
 import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +8,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Mapping
 public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GetMapping
     private int id;
 
-    @GetMapping
     private String password;
 
     @Column(name="email")

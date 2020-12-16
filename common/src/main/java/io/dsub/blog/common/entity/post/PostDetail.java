@@ -1,9 +1,9 @@
-package io.dsub.service.api.post;
+package io.dsub.blog.common.entity.post;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name="post_detail")
 public abstract class PostDetail implements Writable, Likable{
 
+    @Id
     private String postId;
 
     public PostDetail() {

@@ -1,4 +1,4 @@
-package io.dsub.service.api.post;
+package io.dsub.blog.common.entity.post;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -9,4 +9,13 @@ import javax.persistence.Table;
 public class Post extends PostDetail{
 
 
+    @Override
+    public void Like() {
+
+    }
+
+    @Override
+    public void Write() {
+
+    }
 }
