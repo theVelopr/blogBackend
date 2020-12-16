@@ -1,21 +1,8 @@
 package io.dsub.blog.common.entity.post;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@MappedSuperclass
+public abstract class Post extends BaseEntity {
 
-@Entity
-@Table(name="post")
-public class Post extends PostDetail{
-
-
-    @Override
-    public void Like() {
-
-    }
-
-    @Override
-    public void Write() {
-
-    }
 }

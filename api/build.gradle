@@ -1,0 +1,9 @@
+dependencies {
+    implementation (
+	   project(":common"),
+            'com.h2database:h2',
+            'mysql:mysql-connector-java',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.boot:spring-boot-devtools',
+    )
+}

@@ -1,5 +1,3 @@
 rootProject.name = 'blog'
+include 'common'
 include 'api'
-include 'common'
-include 'common'
-
