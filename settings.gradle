@@ -1,1 +1,5 @@
-rootProject.name = 'service'
+rootProject.name = 'blog'
+include 'api'
+include 'common'
+include 'common'
+

@@ -1,7 +1,6 @@
-package io.dsub.service.api.post;
+package io.dsub.blog.common.entity.post;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

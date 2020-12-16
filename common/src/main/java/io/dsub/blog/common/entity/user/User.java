@@ -1,4 +1,4 @@
-package io.dsub.service.api.user;
+package io.dsub.blog.common.entity.user;
 
 import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;
