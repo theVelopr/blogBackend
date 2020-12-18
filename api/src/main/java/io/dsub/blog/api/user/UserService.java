@@ -10,9 +10,9 @@ public interface UserService {
 
     UserDto getUserByEmail(String requestedEmail) throws UserNotFoundException;
 
-    UserDto updateUser(User toUser) throws NoChangesFoundException;
+    UserDto updateUser(UserCommand.UpdateUser updatedUser) throws NoChangesFoundException;
 
-    UserDto updateUserEmail(String email) throws EmailAlreadyExistsException;
+//    UserDto updateUserEmail(String email) throws EmailAlreadyExistsException;
 
     String deleteUser(String email) throws UserNotFoundException;
 }

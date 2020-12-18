@@ -4,6 +4,7 @@ import io.dsub.blog.common.entity.enums.UserType;
 import io.dsub.blog.common.entity.user.User;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -50,6 +51,7 @@ public class UserCommand {
         private String lastName;
         private String nickname;
         private String address;
+        private String oldEmail;
 
         public User toUser() {
             return User.builder()

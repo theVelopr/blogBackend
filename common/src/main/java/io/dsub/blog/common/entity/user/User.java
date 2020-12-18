@@ -35,12 +35,12 @@ public class User extends BaseEntity {
     public User update(User that) {
         return User.builder()
                 .id(id)
-                .password(password)
-                .userType(userType)
-                .email(that.email)
-                .firstName(that.firstName)
-                .lastName(that.lastName)
-                .nickname(that.nickname)
+                .password(this.password.equals(that.password) ? that.password : this.password)
+                .userType(this.userType.equals(that.userType) ? that.userType : this.userType)
+                .email(this.email.equals(that.email) ? that.email : this.email)
+                .firstName(this.firstName.equals(that.firstName) ? that.firstName : this.firstName)
+                .lastName(this.lastName.equals(that.lastName) ? that.lastName : this.lastName)
+                .nickname(this.nickname.equals(that.nickname) ? that.nickname : this.nickname)
                 .build();
     }
 }

@@ -17,6 +17,7 @@ public class UserController {
     public String ddd(){return "WORKS";}
 
     // POST localhost:0000/
+
     @PostMapping
     public UserDto signUp(@RequestBody UserCommand.CreateUser command) {
         return userService.signUp(command.toUser());
@@ -29,11 +30,16 @@ public class UserController {
 
     @PutMapping
     public UserDto updateUser(@RequestBody @Valid UserCommand.UpdateUser command) {
-        return userService.updateUser(command.toUser());
+        return userService.updateUser(command);
     }
 
     @DeleteMapping
     public String deleteUser(@RequestBody Map<String, String> requestBody) {
         return userService.deleteUser(requestBody.get("email"));
     }
+
+//    @PutMapping
+//    public String updateUserEmail(@RequestBody @Valid UserCommand.UpdateUser command) {
+//        return userService.updateUserEmail(command.toUser());
+//    }
 }

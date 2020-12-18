@@ -1,5 +1,9 @@
 server:
-  port: 8080
+  port: 1234
 spring:
   devtools:
     add-properties: false
+logging:
+  level:
+    io.dsub.blog: debug
+    root: error

@@ -8,14 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class SimpleUserService implements UserService{
 
     private final UserRepository userRepository;
+    
+    private static final String USER_NOT_FOUND_STRING = "user with email %s not found";
 
     @Override
     public UserDto signUp(User user) throws EmailAlreadyExistsException {
@@ -31,14 +30,20 @@ public class SimpleUserService implements UserService{
         if (userRepository.existsByEmail(requestedEmail)) {
             return UserDto.fromUser(userRepository.findByEmail(requestedEmail));
         }
-        String reason = "user with email " + requestedEmail + " not found";
-        throw new UserNotFoundException(reason, HttpStatus.BAD_REQUEST);
+        throw new UserNotFoundException(String.format(USER_NOT_FOUND_STRING, requestedEmail), HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public UserDto updateUser(User user) throws NoChangesFoundException {
-        User oldUser = userRepository.findByEmail(user.getEmail());
-        return UserDto.fromUser(userRepository.save(oldUser.update(user)));
+    public UserDto updateUser(UserCommand.UpdateUser updatedUser) throws NoChangesFoundException, UserNotFoundException, EmailAlreadyExistsException {
+        if (!userRepository.existsByEmail(updatedUser.getOldEmail())) {
+            throw new UserNotFoundException(
+                    String.format(USER_NOT_FOUND_STRING, updatedUser.getOldEmail()), HttpStatus.BAD_REQUEST);
+        }
+
+        User updatedUserEntity = userRepository.findByEmail(updatedUser.getOldEmail())
+                .update(updatedUser.toUser());
+
+        return UserDto.fromUser(userRepository.save(updatedUserEntity));
     }
 
     @Override
@@ -47,12 +52,16 @@ public class SimpleUserService implements UserService{
             userRepository.deleteByEmail(email);
             return "user " + email + " successfully deleted";
         }
-        String reason = "user with email " + email + " not found";
-        throw new UserNotFoundException(reason, HttpStatus.BAD_REQUEST);
+        throw new UserNotFoundException(String.format(USER_NOT_FOUND_STRING, email), HttpStatus.BAD_REQUEST);
     }
 
-    // TODO: IMPLEMENT
-    public UserDto updateUserEmail(String email) {
-        return null;
-    }
+//    // TODO: IMPLEMENT
+//    public UserDto updateUserEmail(String email) throws EmailAlreadyExistsException{
+//        if (!userRepository.existsByEmail(email)) {
+//            userRepository.updateByEmail(email);
+//            return UserDto.fromUser(userRepository.save(email));
+//        }
+//        String reason = "user " + email + " already exists";
+//        throw new EmailAlreadyExistsException(reason, HttpStatus.BAD_REQUEST);
+//    }
 }
